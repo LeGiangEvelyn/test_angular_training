@@ -1,0 +1,27 @@
+<h2>{{hero.name | uppercase}} Details:</h2>
+<div><span>id: </span>{{hero.id | currency: 'USD'}}</div>
+<div><span>name: </span>{{hero.name}}</div>
+<div>-----------------------</div>
+<!-- ngModel: two way binding: hero.name can flow in both direction(data flow from hero.name to text box and nguoc lại) -->
+<div>
+  <label for="name">Hero name: </label>
+  <input type="text" [(ngModel)]="hero.name" placeholder = 'Name'>
+</div>
+<!-- <div><span>dateNow: </span>{{today | date}}</div> -->
+<div>-------------------------------------------------------</div>
+<!-- 
+  [class.selected]="hero === selectedHero" : class binding: add class="selected" if hero === selectedHero
+  => onClick: gán hero cho selectedHero
+ -->
+<h2>My heroes:</h2>
+<ul class = "heroes" >
+  <li *ngFor = "let hero of heroes">
+    <button type="button" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<!-- biding selectedHero into app-hero-detail to apply on html của hero-detail -->
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
